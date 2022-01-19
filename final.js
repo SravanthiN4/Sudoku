@@ -32,27 +32,15 @@ function getSection(grid, x, y) {
 }
 
 // This function validates if the row and column in the sudoku puzzle consists of 1-9 numbers without any repeats
-function includes1to9(subsection) {
-	// Create a num array to get 1-9 numbers
-
-	let numArray = [];
-	for (let numIdx = 1; numIdx < 10; numIdx++) {
-		numArray.push(numIdx);
+function includes1to9(arr) {
+	for (let i = 1; i <= arr.length; i++) {
+	  if (arr.indexOf(i) === -1) {
+		return false;
+	  }
 	}
-
-	//sort subsection so it has 1-9 numbers in order
-	subsection = subsection.sort();
-
-	//loop through the subsection and compare each element of the subsection with the numArray created above
-	//return false if they dont match or have unique values
-	//return true if there are unique 1-9 numbers in the subsection.
-	for (let index = 0; index < subsection.length; index++) {
-		if (subsection[index] !== numArray[index]) {
-			return false;
-		}
-	}
+  
 	return true;
-}
+  }
 
 // This function validates if the puzzle passed is valid or not
 function isValidSudoku(puzzle) {
@@ -109,3 +97,76 @@ function isSame(puzzle1, puzzle2) {
 	bool = output;
 	return bool;
 }
+
+
+
+
+let puzzle = [[ 8,9,5,7,4,2,1,3,6 ],
+              [ 2,7,1,9,6,3,4,8,5 ],
+              [ 4,6,3,5,8,1,7,9,2 ],
+              [ 9,3,4,6,1,7,2,5,8 ],
+              [ 5,1,7,2,3,8,9,6,4 ],
+              [ 6,8,2,4,5,9,3,7,1 ],
+              [ 1,5,9,8,7,4,6,2,3 ],
+              [ 7,4,6,3,2,5,8,1,9 ],
+              [ 3,2,8,1,9,6,5,4,7 ]];
+
+
+
+
+
+let puzzleCopy = [[ 8,9,5,7,4,2,1,3,6 ],
+                  [ 2,7,1,9,6,3,4,8,5 ],
+                  [ 4,6,3,5,8,1,7,9,2 ],
+                  [ 9,3,4,6,1,7,2,5,8 ],
+                  [ 5,1,7,2,3,8,9,6,4 ],
+                  [ 6,8,2,4,5,9,3,7,1 ],
+                  [ 1,5,9,8,7,4,6,2,3 ],
+                  [ 7,4,6,3,2,5,8,1,9 ],
+                  [ 3,2,8,1,9,6,5,4,7 ]];
+
+let p8zzle = [[ 8,9,5,7,4,2,1,3,6 ],
+              [ 8,7,1,9,6,3,4,8,5 ],
+              [ 4,6,3,5,8,1,7,9,2 ],
+              [ 9,3,4,6,1,7,2,5,8 ],
+              [ 5,1,7,2,3,8,9,6,4 ],
+              [ 6,8,2,4,5,9,3,7,1 ],
+              [ 1,5,9,8,7,4,6,2,3 ],
+              [ 7,4,6,3,2,5,8,1,9 ],
+              [ 3,2,8,1,9,6,5,4,7 ]];
+
+// getRow(puzzle, 8);
+// // -> [ 3,2,8,1,9,6,5,4,7 ]
+
+// getRow(puzzle, 0);
+// // -> [ 8,9,5,7,4,2,1,3,6 ]
+
+// getColumn(puzzle, 0);
+// // -> [ 8,2,4,9,5,6,1,7,3 ]
+
+// getColumn(puzzle, 8);
+// // -> [ 6,5,2,8,4,1,3,9,7 ]
+
+// getSection(puzzle, 0, 0);
+// // -> [ 8,9,5,2,7,1,4,6,3 ]
+
+// // This grabs the values from column 0 and row 1 (second from the top left)
+// getSection(puzzle, 1,0);
+// // -> [ 7,4,2,9,6,3,5,8,1 ]
+
+// includes1to9([1,2,3,4,5,6,7,8,9]) // => true
+// includes1to9([1,1,2,3,4,5,6,7,8]) // => false (no 9)
+
+// console.log(isValidSudoku(puzzle));
+// //true
+// console.log(isValidSudoku(p8zzle));
+// //false
+
+
+
+// // => false
+
+
+console.log(isSame(puzzle, p8zzle));
+console.log(isSame(puzzle, puzzleCopy));
+// // => true
